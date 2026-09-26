@@ -1,8 +1,8 @@
 /* simple hash function - key mod size*/
 #include<stdio.h>
 int size;
-printf(“Enter size:”);
-scanf(“%d”,&size);
+printf(â€œEnter size:â€);
+scanf(â€œ%dâ€,&size);
 int hash_table[size];
 void init_hash()
 {
