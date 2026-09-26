@@ -1,0 +1,73 @@
+/* simple hash function - key mod size*/
+#include<stdio.h>
+int size;
+printf(“Enter size:”);
+scanf(“%d”,&size);
+int hash_table[size];
+void init_hash()
+{
+    int i;
+    for(i = 0; i < size; i++)
+        hash_table[i] = -1;
+}
+void perform_hash(int value)
+{
+    int key = value % size;
+    if(hash_table[key] == -1)
+        hash_table[key] = value;
+    else
+printf("Collision  occurred..Unable to insert ");
+}
+void delete_hash(int value)
+{
+    int key = value % size;
+    if(hash_table[key] == value)
+        hash_table[key] = -1;
+    else
+   printf("%d not present in the hash table\n",
+          value);
+}
+void search(int value)
+{
+    int key = value % size;
+    if(hash_table[key] == value)
+        printf("Search Found at %d\n",key);
+    else
+        printf("Search Not Found\n");
+}
+void print_hash()
+{
+    int i;
+    printf("\n--------------------");
+    for(i = 0; i < size; i++)
+printf("\n|  hash[%d] -->  %d |",i,
+       hash_table[i]);
+    printf("\n--------------------\n");
+}
+int main()
+{
+    init_hash();
+    int val;
+    for(int i=0;i<size;i++)
+    {
+        printf("\nEnter value :");
+        scanf("%d",&val);
+        perform_hash(val);
+    }
+    printf("Hash table\n");
+    print_hash();
+    printf("Deleting value 10..\n");
+    delete_hash(10);
+printf("After the deletion hash table\n");
+    print_hash();
+    printf("Deleting  15..\n");
+    delete_hash(15);
+printf("After the deletion hash table\n");
+    print_hash();
+    printf("\n");
+printf("Searching  14..\n");
+    search(14);
+printf("Searching  20..\n");
+    search(20);
+    return 0;
+}
