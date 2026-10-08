@@ -91,6 +91,6 @@ int main()
     root = deleteNode(root, key);
     printf("\nInorder after deletion  : ");
     inorder(root);
-    printf("\n");                          */
+    printf("\n");                          
     return 0;
 }
