@@ -1,11 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
-
 struct Node {
     int data;
     struct Node *left, *right;
 };
-
 struct Node* createNode(int value)
 {
     struct Node* node = (struct Node*)malloc(sizeof(struct Node));
@@ -13,8 +11,6 @@ struct Node* createNode(int value)
     node->left = node->right = NULL;
     return node;
 }
-
-// Insert a value into the BST (duplicates are rejected, IDs are unique)
 struct Node* insert(struct Node* root, int value)
 {
     if (root == NULL)
@@ -27,7 +23,6 @@ struct Node* insert(struct Node* root, int value)
         printf("ID %d already exists. Duplicate ignored.\n", value);
     return root;
 }
-
 void inorder(struct Node* root)
 {
     if (root != NULL) {
@@ -36,7 +31,6 @@ void inorder(struct Node* root)
         inorder(root->right);
     }
 }
-
 void preorder(struct Node* root)
 {
     if (root != NULL) {
@@ -45,7 +39,6 @@ void preorder(struct Node* root)
         preorder(root->right);
     }
 }
-
 void postorder(struct Node* root)
 {
     if (root != NULL) {
@@ -54,8 +47,6 @@ void postorder(struct Node* root)
         printf("%d ", root->data);
     }
 }
-
-// Search for a value in the BST
 int search(struct Node* root, int key)
 {
     while (root != NULL) {
@@ -68,12 +59,10 @@ int search(struct Node* root, int key)
     }
     return 0;
 }
-
 int main()
 {
     struct Node* root = NULL;
     int n, value, key;
-
     printf("Enter number of values : ");
     scanf("%d", &n);
     printf("Enter %d unique integer IDs :\n", n);
@@ -81,27 +70,23 @@ int main()
         scanf("%d", &value);
         root = insert(root, value);
     }
-
     printf("\nInorder   traversal : ");
     inorder(root);
     printf("\nPreorder  traversal : ");
     preorder(root);
     printf("\nPostorder traversal : ");
     postorder(root);
-
     printf("\n\nEnter value to search : ");
     scanf("%d", &key);
     if (search(root, key))
         printf("Value %d exists in the BST.\n", key);
     else
         printf("Value %d does not exist in the BST.\n", key);
-
     printf("\nWhy inorder gives sorted output:\n");
     printf("Inorder visits Left subtree -> Node -> Right subtree.\n");
     printf("In a BST every value in the left subtree is smaller than the node\n");
     printf("and every value in the right subtree is larger, so visiting the\n");
     printf("left first, then the node, then the right always produces the\n");
     printf("values in ascending order.\n");
-
     return 0;
 }
